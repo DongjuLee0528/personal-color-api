@@ -116,7 +116,7 @@ def analyze_face_shape(
     """
     if landmarks is None:
         lm = detect_landmarks(image_bgr)
-        if not lm:
+        if lm is None or lm.size == 0:
             return {"status": "guardrail", "code": "NO_FACE"}
         landmarks = lm
 
