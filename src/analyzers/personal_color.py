@@ -3,7 +3,11 @@ from __future__ import annotations
 
 import logging
 import math
+import os
 from typing import Any, Dict, Mapping, Optional, Tuple
+
+os.environ.setdefault("MEDIAPIPE_DISABLE_GPU", "1")
+os.environ.setdefault("OPENCV_OPENCL_RUNTIME", "disabled")
 
 import cv2
 import numpy as np
@@ -26,7 +30,7 @@ DEFAULT_PALETTES: Dict[str, list[str]] = {
 THRESHOLDS: Dict[str, Dict[str, float]] = {
     "ita": {"warm": 28.0, "cool": 10.0},
     "L": {"too_dark": 25.0, "too_bright": 90.0},
-    "roi": {"min_pixels": 1200.0, "min_brightness": 10.0, "min_variance": 5.0},
+    "roi": {"min_pixels": 900.0, "min_brightness": 10.0, "min_variance": 5.0},
 }
 
 
@@ -58,7 +62,7 @@ def classify_from_metrics(metrics: Mapping[str, float]) -> Tuple[str, str]:
 class PersonalColorAnalyzer:
     """Run personal color analysis over a BGR image."""
 
-    def __init__(self, min_valid_rois: int = 2) -> None:
+    def __init__(self, min_valid_rois: int = 1) -> None:
         self.min_valid_rois = min_valid_rois
 
     def analyze(

@@ -1,7 +1,13 @@
 fastapi==0.110.0
 uvicorn[standard]==0.29.0
-numpy==1.26.4
-pillow==10.4.0
+
+# Py3.8 마지막 호환 라인들
+numpy==1.24.4
 opencv-python-headless==4.10.0.84
-scikit-image==0.24.0
+pillow==10.2.0
+scikit-image==0.21.0
+
+# 나머지
 mediapipe==0.10.14
+scikit-learn==1.3.2
+colormath==3.0.0

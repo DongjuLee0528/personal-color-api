@@ -2,9 +2,13 @@
 from __future__ import annotations
 
 import logging
+import os
 from functools import lru_cache
 from io import BytesIO
 from typing import Optional, Tuple
+
+os.environ.setdefault("MEDIAPIPE_DISABLE_GPU", "1")
+os.environ.setdefault("OPENCV_OPENCL_RUNTIME", "disabled")
 
 import cv2
 import mediapipe as mp
